@@ -40,7 +40,7 @@
   <project remote="github" name="superna9999/meta-meson" path="layers/meta-meson"/>
   <project remote="github" name="koenkooi/meta-virtualization" path="layers/meta-virtualization" revision="sumo-k8s-cross"/>
   <project remote="github" name="EmbeddedAndroid/meta-rtlwifi" path="layers/meta-rtlwifi" revision="1a1881e408c8d72262e445cb3375e4df5df7578d" branch="master" />
-  <project remote="github" name="Angstrom-distribution/meta-angstrom" path="layers/meta-angstrom" revision="017a58f099d09410c87015f69d9ec28182cc7b8e" branch="angstrom-v2018.06-sumo">
+  <project remote="github" name="Angstrom-distribution/meta-angstrom" path="layers/meta-angstrom" revision="7357315badee7eef195ccd2e999613555ba90cf4" branch="angstrom-v2018.06-sumo">
       <copyfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
   </project>
 
