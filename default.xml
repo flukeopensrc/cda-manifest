@@ -19,7 +19,7 @@
   <project remote="github" name="openembedded/bitbake" path="bitbake" revision="1.38"/>
   <project remote="github" name="kraj/meta-nslu2" path="layers/meta-nslu2" revision="8f35264fe9bb38439ece38c0c324cec792b22a8f" branch="master" />
   <project remote="github" name="kraj/meta-altera" path="layers/meta-altera" revision="374a62067cf5094cf177a724d1a179881d891a86" branch="master"/>
-  <project remote="github" name="fmhess/meta-fluke-cda" path="layers/meta-fluke-cda" revision="master"/>
+  <project remote="github" name="fmhess/meta-fluke-cda" path="layers/meta-fluke-cda" revision="sumo"/>
   <project remote="github" name="OSSystems/meta-browser" path="layers/meta-browser" revision="53a3752c72a4ac1f509928f23b4b2c4aefa338b4" branch="master" />
   <project remote="github" name="meta-qt5/meta-qt5" path="layers/meta-qt5"/>
   <project remote="github" name="shr-distribution/meta-smartphone" path="layers/meta-smartphone"/>
