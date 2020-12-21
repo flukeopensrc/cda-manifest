@@ -42,4 +42,5 @@
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" remote="github"/>
   <project name="shr-distribution/meta-smartphone" path="layers/meta-smartphone" remote="github"/>
   <project name="superna9999/meta-meson" path="layers/meta-meson" remote="github"/>
+  <project name="ssfivy/meta-noto" path="layers/meta-noto" remote="github"/>
 </manifest>
