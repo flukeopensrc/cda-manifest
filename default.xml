@@ -40,6 +40,7 @@
   <project name="openembedded/bitbake" path="bitbake" remote="github" revision="1.44"/>
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" remote="github"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" remote="github"/>
+  <project name="kraj/meta-clang" path="layers/meta-clang" remote="github" revision="zeus"/>
 <!--   <project name="shr-distribution/meta-smartphone" path="layers/meta-smartphone" remote="github"/> -->
 <!--   <project name="superna9999/meta-meson" path="layers/meta-meson" remote="github"/> -->
   <project name="ssfivy/meta-noto" path="layers/meta-noto" remote="github" revision="zeus"/>
