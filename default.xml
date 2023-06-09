@@ -25,7 +25,7 @@
   <project name="kraj/meta-altera" path="layers/meta-altera" remote="github" revision="8c725c59f86613907748414595b1adccf80909bc"/>
   <project name="flukeopensrc/meta-fluke-cda" path="layers/meta-fluke-cda" remote="github">
     <copyfile dest="Dockerfile" src="Dockerfile"/>
-    <copyfile dest="runDocker.sh" src="runDocker.sh"/>
+    <copyfile dest="docker.readme" src="docker.readme"/>
   </project>
 <!--   <project name="kraj/meta-nslu2" path="layers/meta-nslu2" remote="github" revision="21e90cd6f720c615a067318571178ee230ca1655"/> -->
 <!--   <project name="linux-sunxi/meta-sunxi" path="layers/meta-sunxi" remote="github"/> -->

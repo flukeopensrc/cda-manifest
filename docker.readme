@@ -1,3 +1,8 @@
+## The following command should be runned after the yocto
+## project has been setup (after calling setup-angstrom-manifest.sh).
+## If building for the first time you will need to run all 3
+## commands.
+
 # Build docker image that we can use to create a container
 # Run once
 docker build -t fluke/nighthawk:latest \
