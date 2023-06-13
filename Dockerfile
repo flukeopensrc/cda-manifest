@@ -1,19 +1,23 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Suppresses prompt for timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Yocto dependencies
-RUN apt-get update
+RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install gawk make wget tar bzip2 gzip python3 unzip perl patch \
     diffutils diffstat git cpp gcc texinfo chrpath \
     ccache socat \
     python3-pexpect findutils file cpio python python3-pip \
     python3-jinja2 xterm bash
 
-# Unable to locate packages
+# Unable to locate packages. These were likely packaged with other packages
 # gcc-c++  glibc-devel perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue perl-bignum
 # which xz SDL-devel python3-GitPython
+
+# Other stuff that might be helpful
+RUN apat-get -y install curl ca-certificates repo
+
 
 # Yocto build fails, if the Linux system does not configure a UTF8-capable locale.
 RUN apt-get -y install locales
@@ -28,15 +32,15 @@ ARG USER=docker
 ARG PWD=docker
 ARG HOME="/home/$USER"
 
+# Create our group and user so we can login as ourself. Useful for ssh.
 RUN groupadd -g $GROUP_ID $USER && \
     useradd -g $GROUP_ID -m -s /bin/bash -u $USER_ID $USER
 
-# RUN --mount=type=bind,target=$PWD,rw
-# RUN --mount=type=bind,target=$HOME/.ssh,from=ubuntu
-
 # Switch user to you
 USER $USER
+
 # start the ssh-agent && and prompt for ssh passphrase
+# Run this whenever we call bash so don't forget.
 RUN echo '\n\
 ssh_start_agent() {\n\
     if [ ! -S "${HOME}/.ssh/ssh_auth_sock_${HOSTNAME}" ]; then\n\
