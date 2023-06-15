@@ -1,10 +1,22 @@
 FROM ubuntu:20.04
 
+ENV TERM="xterm-color"
+ARG USER_ID=999
+ARG GROUP_ID=999
+ARG USER=docker
+ARG PWD=docker
+ARG HOME="/home/$USER"
+
+# Create our group and user so we can login as ourself. Useful for ssh.
+RUN groupadd -g $GROUP_ID $USER && \
+    useradd -g $GROUP_ID -m -s /bin/bash -u $USER_ID $USER
+
 # Suppresses prompt for timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Yocto dependencies
-RUN apt-get update && apt-get -y upgrade
+RUN apt-get update
+RUN apt-get -y upgrade
 RUN apt-get -y install gawk make wget tar bzip2 gzip python3 unzip perl patch \
     diffutils diffstat git cpp gcc texinfo chrpath \
     ccache socat \
@@ -16,8 +28,15 @@ RUN apt-get -y install gawk make wget tar bzip2 gzip python3 unzip perl patch \
 # which xz SDL-devel python3-GitPython
 
 # Other stuff that might be helpful
-RUN apat-get -y install curl ca-certificates repo
+RUN apt-get -y install vim curl ca-certificates
 
+# Install and setup google repo
+RUN mkdir -p $HOME/.bin
+RUN echo '\n\
+export PATH="$HOME/.bin:$PATH"\n\
+\n' >> ${HOME}/.bashrc
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+RUN chmod a+rx ~/.bin/repo
 
 # Yocto build fails, if the Linux system does not configure a UTF8-capable locale.
 RUN apt-get -y install locales
@@ -25,16 +44,24 @@ RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-ENV TERM="xterm-color"
-ARG USER_ID=999
-ARG GROUP_ID=999
-ARG USER=docker
-ARG PWD=docker
-ARG HOME="/home/$USER"
+# We get SSL issue if we don't include Zscaler certificates DUH....
+COPY ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates/
+RUN update-ca-certificates
 
-# Create our group and user so we can login as ourself. Useful for ssh.
-RUN groupadd -g $GROUP_ID $USER && \
-    useradd -g $GROUP_ID -m -s /bin/bash -u $USER_ID $USER
+# Git repo init will complain not having user.name and email
+# Stop repo from prompting for color
+RUN echo "\n\
+[user]\n\
+    name = Docker\n\
+    email = docker@fluke.com\n\
+\n\
+[color]\n\
+    ui = false\n\
+\n" >> $HOME/.gitconfig
+
+
+RUN chown $USER:$USER $HOME/.gitconfig
+RUN chmod 644 $HOME/.gitconfig
 
 # Switch user to you
 USER $USER

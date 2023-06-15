@@ -15,7 +15,7 @@ docker build -t fluke/nighthawk:latest \
 # Create and run our container
 # Run once
 docker run \
-    -d
+    -d \
     --mount type=bind,source=$PWD,target=$PWD \
     --mount type=bind,source=$HOME/.ssh,target=$HOME/.ssh \
     --hostname nh-yocto \

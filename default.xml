@@ -26,6 +26,7 @@
   <project name="flukeopensrc/meta-fluke-cda" path="layers/meta-fluke-cda" remote="github">
     <copyfile dest="Dockerfile" src="Dockerfile"/>
     <copyfile dest="docker.readme" src="docker.readme"/>
+    <copyfile dest="ZscalerRootCertificate-2048-SHA256.crt" src="ZscalerRootCertificate-2048-SHA256.crt"/>
   </project>
 <!--   <project name="kraj/meta-nslu2" path="layers/meta-nslu2" remote="github" revision="21e90cd6f720c615a067318571178ee230ca1655"/> -->
 <!--   <project name="linux-sunxi/meta-sunxi" path="layers/meta-sunxi" remote="github"/> -->
