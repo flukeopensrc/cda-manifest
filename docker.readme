@@ -4,13 +4,17 @@
 ## commands.
 
 # Build docker image that we can use to create a container
-# Run once
+# This should be runned from angstrom-v2019.12-zeus-fluke-cda-manifest
+# Run once only
 docker build -t fluke/nighthawk:latest \
     --build-arg USER=$USER \
     --build-arg USER_ID=$(id -u) \
     --build-arg GROUP_ID=$(id -g) \
     --build-arg PWD=$PWD \
     .
+
+# Verify your image has been built
+docker image ls
 
 # Create and run our container
 # Run once
@@ -19,8 +23,12 @@ docker run \
     --mount type=bind,source=$PWD,target=$PWD \
     --mount type=bind,source=$HOME/.ssh,target=$HOME/.ssh \
     --hostname nh-yocto \
-    --name nh-yocto2 \
+    --name nh-yocto \
     fluke/nighthawk
+
+
+# Verify your container has been created and is running
+docker container ls
 
 # Open a bash shell in our container
 # Run as needed
