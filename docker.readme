@@ -17,19 +17,15 @@ docker build -t fluke/nighthawk:latest \
 docker image ls
 
 # Create and run our container
-# Run once
+# This will put us in a shell inside the container. When you exit
+# the shell/container the container will be removed but all the
+# files will remain.
 docker run \
-    -d \
+    --rm \
+    -it \
     --mount type=bind,source=$PWD,target=$PWD \
     --mount type=bind,source=$HOME/.ssh,target=$HOME/.ssh \
     --hostname nh-yocto \
     --name nh-yocto \
-    fluke/nighthawk
-
-
-# Verify your container has been created and is running
-docker container ls
-
-# Open a bash shell in our container
-# Run as needed
-docker exec -it nh-yocto bash
+    fluke/nighthawk \
+    /bin/bash
