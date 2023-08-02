@@ -1,10 +1,15 @@
 FROM ubuntu:20.04
 
+# Give us a nice color shell
 ENV TERM="xterm-color"
+
+# Variables that we will use to setup our image/container
+# These value are arbitrary and should be replaced when calling docker build.
 ARG USER_ID=999
 ARG GROUP_ID=999
 ARG USER=docker
 ARG PWD=docker
+
 ARG HOME="/home/$USER"
 
 # Create our group and user so we can login as ourself. Useful for ssh.
@@ -37,7 +42,6 @@ RUN apt-get -y install vim curl ca-certificates
 # Clean up old package data that's no longer needed.
 RUN apt autoremove -y
 
-
 # Yocto build fails, if the Linux system does not configure a UTF8-capable locale.
 RUN apt-get -y install locales
 RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
@@ -48,25 +52,8 @@ ENV LC_ALL en_US.UTF-8
 COPY ZscalerRootCertificate-2048-SHA256.crt /usr/local/share/ca-certificates/
 RUN update-ca-certificates
 
-
 # Switch user to you
 USER $USER
-
-# Git repo init will complain not having user.name and email
-RUN git config --global user.name Docker
-RUN git config --global user.email docker@fluke.com
-
-# Stop repo from prompting for color
-RUN git config --global color.ui false
-
-# Install and setup google repo
-RUN mkdir -p ~/.bin
-RUN echo '\n\
-export PATH="$HOME/.bin:$PATH"\n\
-\n' >> ~/.bashrc
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-RUN chmod a+rx ~/.bin/repo
-
 
 # start the ssh-agent && and prompt for ssh passphrase
 # Run this whenever we call bash so don't forget.
