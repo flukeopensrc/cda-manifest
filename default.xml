@@ -6,42 +6,27 @@
   <remote fetch="http://git.shr-project.org" name="shr"/>
   <remote fetch="http://git.yoctoproject.org/git" name="yocto"/>
 
-  <default revision="zeus" sync-j="16"/>
+  <default revision="zeus" dest-branch="zeus-next" sync-j="16"/>
 
-<!--   <project name="96boards/meta-96boards" path="layers/meta-96boards" remote="github"/> -->
-  <project name="Angstrom-distribution/meta-angstrom" path="layers/meta-angstrom" remote="github" revision="angstrom-v2019.12-zeus">
-    <copyfile dest="setup-environment" src="setup-environment-internal"/>
-  </project>
-<!--   <project name="EmbeddedAndroid/meta-rtlwifi" path="layers/meta-rtlwifi" remote="github" revision="174c9bacc4af9873bfbecf618e331c6d464540bf"/> -->
-<!--   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" remote="github"/> -->
-<!--   <project name="agherzan/meta-chip" path="layers/meta-chip" remote="github" revision="4ce5116136daec211a58b0579f88569ed21a075c"/> -->
-<!--   <project name="agherzan/meta-raspberrypi" path="layers/meta-raspberrypi" remote="github"/> -->
-<!--   <project name="bmwcarit/meta-ros" path="layers/meta-ros" remote="github" revision="72068b17e4192b51e09c8dc633805a35edac8701"/> -->
-<!--   <project name="koenkooi/meta-beagleboard" path="layers/meta-beagleboard" remote="github" revision="thud"/> -->
-<!--   <project name="koenkooi/meta-dominion" path="layers/meta-dominion" remote="github" revision="thud"/> -->
-<!--   <project name="koenkooi/meta-kodi" path="layers/meta-kodi" remote="github" revision="thud"/> -->
-<!--   <project name="koenkooi/meta-photography" path="layers/meta-photography" remote="github" revision="thud"/> -->
-<!--   <project name="koenkooi/meta-uav" path="layers/meta-uav" remote="github" revision="thud"/> -->
-  <project name="kraj/meta-altera" path="layers/meta-altera" remote="github" revision="8c725c59f86613907748414595b1adccf80909bc"/>
-  <project name="flukeopensrc/meta-fluke-cda" path="layers/meta-fluke-cda" remote="github" />
-<!--   <project name="kraj/meta-nslu2" path="layers/meta-nslu2" remote="github" revision="21e90cd6f720c615a067318571178ee230ca1655"/> -->
-<!--   <project name="linux-sunxi/meta-sunxi" path="layers/meta-sunxi" remote="github"/> -->
-<!--   <project name="linux4sam/meta-atmel" path="layers/meta-atmel" remote="github" revision="morty"/> -->
-<!--   <project name="meta-freescale" path="layers/meta-freescale" remote="yocto"/> -->
-<!--   <project name="meta-intel" path="layers/meta-intel" remote="yocto"/> -->
-<!--   <project name="meta-java" path="layers/meta-java" remote="yocto"/> -->
-<!--   <project name="meta-qt4" path="layers/meta-qt4" remote="yocto" revision="b37d8b93924b314df3591b4a61e194ff3feb5517"/> -->
-  <project name="meta-qt5/meta-qt5" path="layers/meta-qt5" remote="github"/>
-  <project name="meta-rust/meta-rust" path="layers/meta-rust" remote="github" revision="0f950f5e333a1c8999320bf18232144f3dd9c80e"/>
-<!--   <project name="meta-ti" path="layers/meta-ti" remote="yocto" revision="2251edb9b93aef4dfcd8a0f7b3ec4e1ddeb970af"/> -->
-<!--   <project name="meta-virtualization" path="layers/meta-virtualization" remote="yocto"/> -->
-<!--   <project name="meta-xilinx" path="layers/meta-xilinx" remote="yocto" revision="f3c8b1c9a8ae6a1690f7f5d907b65c588f65446a"/> -->
-<!--   <project name="ndechesne/meta-qcom" path="layers/meta-qcom" remote="github"/> -->
   <project name="openembedded/bitbake" path="bitbake" remote="github" revision="1.44"/>
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" remote="github"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" remote="github"/>
-  <project name="kraj/meta-clang" path="layers/meta-clang" remote="github" revision="zeus"/>
-<!--   <project name="shr-distribution/meta-smartphone" path="layers/meta-smartphone" remote="github"/> -->
-<!--   <project name="superna9999/meta-meson" path="layers/meta-meson" remote="github"/> -->
+  <project name="kraj/meta-altera" path="layers/meta-altera" remote="github"/>
+  <project name="meta-qt5/meta-qt5" path="layers/meta-qt5" remote="github"/>
+  <project name="Angstrom-distribution/meta-angstrom" path="layers/meta-angstrom" remote="github" revision="angstrom-v2019.12-zeus">
+    <copyfile dest="setup-environment" src="setup-environment-internal"/>
+  </project>
+
+  <project name="flukeopensrc/meta-fluke-cda" path="layers/meta-fluke-cda" remote="github">
+    <copyfile dest="Dockerfile" src="Dockerfile"/>
+    <copyfile dest="docker.readme" src="docker.readme"/>
+    <copyfile dest="ZscalerRootCertificate-2048-SHA256.crt" src="ZscalerRootCertificate-2048-SHA256.crt"/>
+  </project>
+
   <project name="ssfivy/meta-noto" path="layers/meta-noto" remote="github" revision="zeus"/>
+  <!-- <project name="meta-rust/meta-rust" path="layers/meta-rust" remote="github" revision="0f950f5e333a1c8999320bf18232144f3dd9c80e"/> -->
+  <project name="meta-rust/meta-rust" path="layers/meta-rust" remote="github" revision="zeus"/>
+  <project name="kraj/meta-clang" path="layers/meta-clang" remote="github" revision="zeus"/>
+
+
 </manifest>
