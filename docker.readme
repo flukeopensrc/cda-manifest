@@ -29,3 +29,12 @@ docker run \
     --name nh-yocto \
     fluke/nighthawk \
     /bin/bash
+
+
+# Additionally you may need to run the following else bitbake builds may complain
+# about space. This should be run on your host machine.
+sysctl -w fs.inotify.max_user_watches=1048576
+
+# To verify call
+sysctl -n fs.inotify.max_user_watches
+
