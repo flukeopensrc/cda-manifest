@@ -1,0 +1,40 @@
+## The following command should be runned after the yocto
+## project has been setup (after calling setup-angstrom-manifest.sh).
+## If building for the first time you will need to run all 3
+## commands.
+
+# Build docker image that we can use to create a container
+# This should be runned from angstrom-v2019.12-zeus-fluke-cda-manifest
+# Run once only
+docker build -t fluke/nighthawk:latest \
+    --build-arg USER=$USER \
+    --build-arg USER_ID=$(id -u) \
+    --build-arg GROUP_ID=$(id -g) \
+    --build-arg PWD=$PWD \
+    .
+
+# Verify your image has been built
+docker image ls
+
+# Create and run our container
+# This will put us in a shell inside the container. When you exit
+# the shell/container the container will be removed but all the
+# files will remain.
+docker run \
+    --rm \
+    -it \
+    --mount type=bind,source=$PWD,target=$PWD \
+    --mount type=bind,source=$HOME/.ssh,target=$HOME/.ssh \
+    --hostname nh-yocto \
+    --name nh-yocto \
+    fluke/nighthawk \
+    /bin/bash
+
+
+# Additionally you may need to run the following else bitbake builds may complain
+# about space. This should be run on your host machine.
+sysctl -w fs.inotify.max_user_watches=1048576
+
+# To verify call
+sysctl -n fs.inotify.max_user_watches
+
